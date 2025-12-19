@@ -26,12 +26,14 @@ bash
 git clone https://github.com/aetcheverry/ChemistrySuite.git
 cd ChemistrySuite
 ```
+
 ---
 
 ## 3) Usage
 Run the application:
-
+```
 python main.py
+```
 
 ---
 
