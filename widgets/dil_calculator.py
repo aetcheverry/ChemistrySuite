@@ -512,3 +512,4 @@ class DilutionCalculator(BaseWidget):
         self.mass_mw_input.clear()
         self.mass_vol_spin.setValue(10)
         self.mass_conc_spin.setValue(10)
+        self.mass_result.clear()

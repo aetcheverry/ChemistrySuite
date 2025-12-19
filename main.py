@@ -14,7 +14,7 @@ from typing import Callable, Dict, Optional, Tuple
 from pathlib import Path
 
 from PyQt6.QtCore import Qt, QTimer, QUrl, QSettings, QCoreApplication, QEvent, pyqtSignal
-from PyQt6.QtGui import QAction, QIcon, QGuiApplication, QFont, QFontDatabase, QFontInfo, QPalette
+from PyQt6.QtGui import QAction, QIcon, QGuiApplication, QFont, QFontDatabase, QFontInfo, QPalette, QDesktopServices
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -62,10 +62,20 @@ except Exception:
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
+
+def resource_path(rel):
+    base = getattr(sys, "_MEIPASS", BASE_DIR)
+    return os.path.join(base, rel)
+HOME_PAGE_PATH = resource_path(os.path.join("resources", "home_page.html"))
+ICON_PATH = resource_path(os.path.join("resources", "icon.ico"))
 RESOURCES_DIR = os.path.join(BASE_DIR, "resources")
 WIDGETS_DIR = os.path.join(BASE_DIR, "widgets")
 INSTRUCTIONS_DIR = os.path.join(BASE_DIR, "instructions")
-HOME_PAGE_PATH = os.path.join(RESOURCES_DIR, "home_page.html")
+
+APP_NAME = "Chemistry Suite"
+APP_VERSION = "0.8.3"
+UPDATE_INFO_URL = "https://raw.githubusercontent.com/aetcheverry/ChemistrySuite/main/version.json"
+UPDATE_TIMEOUT_SEC = 5.0
 
 # Shared helpers (ensure_instruction_page, BaseWidget)
 from logic.shared_functions import (
@@ -145,6 +155,147 @@ def _migrate_instruction_pages(instructions_dir: str) -> None:
     except Exception:
         # Migration is non-critical; never raise
         pass
+
+
+# --- Update check utilities ---------------------------------------------------
+def _parse_semver(v: str) -> tuple[int, int, int]:
+    """
+    Convert '1.2.3' -> (1,2,3). Non-numeric parts are ignored.
+    Returns (0,0,0) on malformed input so comparison is safe.
+    """
+    try:
+        parts = (v or "").strip().split(".")
+        major = int(parts[0]) if len(parts) > 0 else 0
+        minor = int(parts[1]) if len(parts) > 1 else 0
+        patch = int(parts[2]) if len(parts) > 2 else 0
+        return (major, minor, patch)
+    except Exception:
+        return (0, 0, 0)
+
+
+def _fetch_update_json(url: str, timeout: float = UPDATE_TIMEOUT_SEC) -> tuple[dict | None, str | None]:
+    """
+    Fetch JSON from URL using 'requests' if available, otherwise urllib.
+    Returns a dict on success, or None on error.
+    """
+    # Prefer requests if present
+    headers = {
+        "User-Agent": f"{APP_NAME}/{APP_VERSION}(+https://github.com/aetcheverry/ChemistrySuite)",
+        "Accept": "application/json",
+        "Cache-Control": "no-cache",
+    }
+    try:
+        import requests  # type: ignore
+        verify = True
+        try:
+            import certifi
+            verify = certifi.where()
+        except Exception:
+            pass
+
+        resp = requests.get(url, headers=headers, timeout=max(10.0, timeout), verify=verify)
+        if resp.status_code == 200:
+            try:
+                return resp.json(), None
+            except Exception as e:
+                return None, f"Error parsing JSON: {e}"
+        else:
+          return None, f"HTTP {resp.status_code} from server"
+    except Exception as e:
+        last_err = f"requests error {e}"
+
+    # Fallback to stdlib
+    try:
+        import json, ssl, urllib.request
+        req = urllib.request.Request(url, headers=headers, method="GET")
+        try:
+            import certifi
+            context = ssl.create_default_context(cafile=certifi.where())
+        except Exception:
+            context = ssl.create_default_context()
+
+        with urllib.request.urlopen(req, timeout=max(10.0, timeout), context=context) as resp:
+            status = getattr(resp, "status", 200)
+            if status != 200:
+                return None, f"HTTP {status} from server"
+            raw = resp.read()
+            try:
+                return json.loads(raw.decode("utf-8", errors="ignore")), None
+            except Exception as e:
+                return None, f"Invalid JSON format: {e}"
+    except Exception as e:
+        prefix = (last_err +"; ") if "last_err" in locals() else ""
+        return None, f"{prefix}urllib error {e}"
+
+
+def check_for_updates_dialog(parent_widget=None) -> None:
+    """
+    Synchronously checks UPDATE_INFO_URL, compares versions, and shows a dialog.
+    Non-fatal on any error; shows an info box if up to date, and an actionable
+    dialog with a 'Download' button when a newer version exists.
+    """
+    info, err = _fetch_update_json(UPDATE_INFO_URL, timeout=UPDATE_TIMEOUT_SEC)
+    if err or not info or not isinstance(info, dict):
+        detail = f"Unable to check for updates at this time."
+        if err:
+            detail += f"\n\nError: {err}"
+        QMessageBox.information(parent_widget, f"{APP_NAME} — Updates", detail)
+        return
+
+    latest = str(info.get("latest_version", "")).strip()
+    download_url = str(info.get("download_url", "")).strip()
+    notes = str(info.get("notes", "")).strip()
+    if not latest:
+        QMessageBox.information(parent_widget, f"{APP_NAME} — Updates", "Update information is incomplete.")
+        return
+
+    current_t = _parse_semver(APP_VERSION)
+    latest_t = _parse_semver(latest)
+
+    if latest_t <= current_t:
+        QMessageBox.information(
+            parent_widget,
+            f"{APP_NAME} — Up to date",
+            f"You are running version {APP_VERSION}.\nNo updates available."
+        )
+        return
+
+    # Newer version available
+    msg = (
+        f"A new version is available.\n\n"
+        f"Current version: {APP_VERSION}\n"
+        f"Latest version: {latest}"
+    )
+    if notes:
+        msg += f"\n\nNotes:\n{notes}"
+
+    box = QMessageBox(parent_widget)
+    box.setWindowTitle(f"{APP_NAME} — Update available")
+    box.setIcon(QMessageBox.Icon.Information)
+    box.setText(msg)
+    box.addButton("Close", QMessageBox.ButtonRole.RejectRole)
+
+    download_btn = None
+    if download_url:
+        download_btn = box.addButton("Download", QMessageBox.ButtonRole.AcceptRole)
+
+    box.exec()
+
+    if download_url and download_btn and box.clickedButton() == download_btn:
+        try:
+            ok = QDesktopServices.openUrl(QUrl(download_url))
+            if not ok:
+                QMessageBox.warning(
+                    parent_widget,
+                    f"{APP_NAME} - Update",
+                    "Couldn't open the download page."
+                )
+        except Exception as e:
+            QMessageBox.warning(
+                parent_widget,
+                f"{APP_NAME} - Update",
+                f"Couldn't open the download page.\n\nError: {e}",
+            )
 
 
 # ---------------------------------------------------------------------------
@@ -321,6 +472,7 @@ def build_dark_palette():
     palette.setColor(QPalette.ColorRole.BrightText, QColor(255, 0, 0))
     palette.setColor(QPalette.ColorRole.Highlight, QColor(42, 130, 218))
     palette.setColor(QPalette.ColorRole.HighlightedText, QColor(0, 0, 0))
+    palette.setColor(QPalette.ColorRole.PlaceholderText, QColor(180, 180, 180))
     return palette
 
 
@@ -340,6 +492,7 @@ def build_light_palette():
     p.setColor(QPalette.ColorRole.BrightText, QColor(255, 0, 0))
     p.setColor(QPalette.ColorRole.Highlight, QColor(0, 120, 215))        # Windows-like accent
     p.setColor(QPalette.ColorRole.HighlightedText, QColor(255, 255, 255))
+    p.setColor(QPalette.ColorRole.PlaceholderText, QColor(128, 128, 128))
 
 
     return p
@@ -860,6 +1013,7 @@ class ChemistrySuiteApp(QMainWindow):
         # Select Home AFTER status bar exists
         self.sidebar.setCurrentItem(self.item_home)
         self._on_sidebar_click(self.item_home, 0)
+        QTimer.singleShot(3000, lambda: check_for_updates_dialog(self))
 
     # --- Sidebar population (lazy loading) ---
     def _new_key(self, label: str) -> str:
@@ -988,6 +1142,11 @@ class ChemistrySuiteApp(QMainWindow):
         instruct_action.setShortcut("F1")
         instruct_action.triggered.connect(self._show_instructions)
         help_menu.addAction(instruct_action)
+
+        check_updates_action = QAction("Check for Updates", self)
+        check_updates_action.triggered.connect(self._check_updates)
+        help_menu.addAction(check_updates_action)
+
         about_action = QAction("About Chemistry Suite", self)
         about_action.triggered.connect(self._show_about)
         help_menu.addAction(about_action)
@@ -1199,13 +1358,16 @@ class ChemistrySuiteApp(QMainWindow):
             self.help_window.raise_()
             self.help_window.activateWindow()
 
+    def _check_updates(self) -> None:
+        check_for_updates_dialog(self)
+
     # --- About dialog ---
     def _show_about(self) -> None:
         QMessageBox.about(
             self,
-            "About Chemistry Suite",
-            "<h3>Chemistry Suite</h3>"
-            "<p>Version 0.1.8 (Beta)</p>"
+            f"About {APP_NAME}",
+            f"<h3>{APP_NAME}</h3>"
+            f"<p>Version {APP_VERSION}</p>"
             "<p><b>Developer:</b> Alvaro Etcheverry Berrios</p>"
             "<p>A modular suite of tools for chemical data and calculations.</p>",
         )
