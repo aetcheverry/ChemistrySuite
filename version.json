@@ -1,0 +1,21 @@
+{
+  "latest_version": "0.8.3",
+  "release_date": "2025-12-19T20:13:29Z",
+  "download_url": "https://github.com/aetcheverry/ChemistrySuite/releases",
+  "notes": [
+    "Theme: readable placeholder text via QPalette.PlaceholderText in light/dark palettes.",
+    "Edit \u2192 Clear Inputs: implemented and expanded across NMR Impurities, Isotopic Distribution, EA, DOSY, and Dilution (Mass).",
+    "DOSY: SEGWE viscosity & solvent MW auto-populate after Clear Inputs and method switch.",
+    "General: centralized theme/event propagation via PreferencesDialog._apply()."
+    "Tests: removed solvent_data_test (dataset checks were non-math)."
+  ],
+  "compat": {
+    "python": ">=3.9",
+    "pyqt6": ">=6.4.0",
+    "matplotlib": ">=3.6.0"
+  },
+  "checks": {
+    "timeout_sec": 10,
+    "cache": false
+  }
+}
