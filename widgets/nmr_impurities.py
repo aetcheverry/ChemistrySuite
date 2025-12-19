@@ -481,3 +481,17 @@ class NMRImpuritiesWidget(QWidget):
             return []
         # Split by comma, strip whitespace, drop empties, lowercase
         return [t.strip().lower() for t in note_field.split(',') if t.strip()]
+
+    def clear_inputs(self):
+        self.solvent_combo.blockSignals(True)
+        self.btn_group_nuc.blockSignals(True)
+        try:
+            self.rad_1h.setChecked(True)
+            self.search_input.clear()
+            self.tree.clear()
+            self.ref_text.clear()
+            self.update_solvents()
+        finally:
+            self.solvent_combo.blockSignals(False)
+            self.btn_group_nuc.blockSignals(False)
+        self.populate_table()

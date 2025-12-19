@@ -323,3 +323,5 @@ class EACalculator(BaseWidget):
             combo.setCurrentIndex(0)
             cust.clear()
             min_spin.setValue(0.0)
+        self.results_box.clear()
+        self.report_box.clear()

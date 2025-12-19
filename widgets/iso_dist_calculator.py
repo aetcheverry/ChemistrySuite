@@ -337,6 +337,28 @@ class IsotopicDistCalculator(BaseWidget):
         else:
             self.safe_show_error("Export Error", "No figure is available to export.")
 
+    def clear_inputs(self):
+        self.formula_input.clear()
+        self.rad_pos.setChecked(True)
+        self.update_adducts()
+        if self.adduct_combo.count() > 0:
+            self.adduct_combo.setCurrentIndex(0)
+
+        self.mono_label.setText("Base Peak (100% RI): -")
+        self.table.setRowCount(0)
+        try:
+            if self.figure is not None:
+                self.figure.clear()
+                if self.canvas is not None:
+                    self.canvas.draw()
+        except Exception:
+            pass
+
+        self.last_dist = None
+        self.last_charge = 1
+        self.last_adduct_info = None
+        self.last_peaks_prob = []
+
     def closeEvent(self, event):
         self._is_closing = True
 
