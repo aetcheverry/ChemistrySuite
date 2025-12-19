@@ -19,7 +19,19 @@ Reference Data:
 
 ---
 
-## 2) Installation
+## 2) Folder Structure
+
+ChemistrySuite/
+├─ main.py
+├─ widgets/           # UI components
+├─ logic/             # shared helpers & calculations
+├─ lib/               # static datasets
+├─ resources/         # icons, home_page.html
+└─ instructions/      # help pages (HTML)
+
+---
+
+## 3) Installation
 Clone the repository and install dependencies:
 ```
 bash
@@ -29,7 +41,7 @@ cd ChemistrySuite
 
 ---
 
-## 3) Usage
+## 4) Usage
 Run the application:
 ```
 python main.py
@@ -37,7 +49,7 @@ python main.py
 
 ---
 
-## 4) Requirements
+## 5) Requirements
 
 - Python 3.10+
 - PyQt6
@@ -46,17 +58,17 @@ python main.py
 
 ---
 
-## 5) License
+## 6) License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
-## 6) Contributing
+## 7) Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ---
 
-## 7) Roadmap (future updates)
+## 8) Roadmap (future updates)
 
 - BVS calculator  
 - Diamagnetic corrections
