@@ -21,11 +21,11 @@ Reference Data:
 
 ## 2) Installation
 Clone the repository and install dependencies:
-
+```
 bash
 git clone https://github.com/aetcheverry/ChemistrySuite.git
 cd ChemistrySuite
-
+```
 ---
 
 ## 3) Usage
@@ -37,10 +37,10 @@ python main.py
 
 ## 4) Requirements
 
-Python 3.10+
-PyQt6
-PyQt6-WebEngine (optional for rich help pages)
-requests (for update checks)
+- Python 3.10+
+- PyQt6
+- PyQt6-WebEngine (optional for rich help pages)
+- requests (for update checks)
 
 ---
 
