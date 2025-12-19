@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Suite - Main Instructions</title>
+    <style>
+        /* Styling adapted from home_page.html and ea_calculator_inst.html for consistency */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Headers */
+        .cat-header {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-left: 10px;
+            border-left: 5px solid #3498db; /* Blue for General Help */
+            color: #3498db;
+        }
+
+        /* Instruction Cards */
+        .widget-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-top: 4px solid #3498db; /* Blue border */
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .widget-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        /* Typography improvements */
+        p { margin-bottom: 10px; }
+        ul, ol { margin-top: 5px; padding-left: 25px; }
+        li { margin-bottom: 8px; color: #555; }
+        strong { color: #333; }
+        
+        .note {
+            background-color: #f0f7fb; /* Light blue background */
+            border-left: 3px solid #3498db;
+            padding: 10px 15px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #555;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* UI Elements & Shortcuts (ported from old main_inst) */
+        .ui-element {
+            font-weight: 600;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+            padding: 0 4px;
+            border-radius: 3px;
+            border: 1px solid #eee;
+        }
+        
+        .shortcut {
+            display: inline-block;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0 5px;
+            font-size: 0.85em;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #555;
+            box-shadow: 0 1px 0 #ddd;
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <h1>Chemistry Suite</h1>
+            <div class="subtitle">General Help & Documentation</div>
+        </div>
+
+        <p>
+            <strong>Chemistry Suite</strong> is a modular software platform designed to assist with common laboratory calculations and data referencing. 
+            The software is divided into two main sections: <strong>Data</strong> (reference materials) and <strong>Calculators</strong> (interactive tools).
+        </p>
+
+        <!-- Section 1: Navigation -->
+        <div class="cat-header">1. Navigation</div>
+        <div class="widget-card">
+            <div class="widget-title">Getting Around</div>
+            <p>
+                Use the <strong>Side Panel</strong> on the left to navigate between different modules.
+            </p>
+            
+            <ul>
+                <li>Clicking a category header (e.g., "Calculators") expands or collapses that section.</li>
+                <li>Clicking a specific module (e.g., "Elemental Analysis") loads that tool in the main view.</li>
+            </ul>
+            
+            <div class="note">
+                <strong>Tip:</strong> Context-specific instructions for each tool can be accessed by pressing <span class="shortcut">F1</span> while the tool is open.
+            </div>
+        </div>
+
+        <!-- Section 2: Menu Bar -->
+        <div class="cat-header">2. Menu Bar Features</div>
+        
+        <div class="widget-card">
+            <div class="widget-title">File Menu</div>
+            <ul>
+                <li><span class="ui-element">Preferences...</span> (<span class="shortcut">Ctrl</span>+<span class="shortcut">P</span>): Open the configuration panel to customize the application appearance (theme, font size), define startup behaviors, manage export settings, and set default file paths.</li>
+                <li><span class="ui-element">Home</span> (<span class="shortcut">Ctrl</span>+<span class="shortcut">H</span>): Returns to the main landing page.</li>
+                <li><span class="ui-element">Exit</span> (<span class="shortcut">Alt</span>+<span class="shortcut">F4</span>): Closes the application.</li>
+            </ul>
+        </div>
+
+        <div class="widget-card">
+            <div class="widget-title">Edit Menu</div>
+            <ul>
+                <li><span class="ui-element">Clear Inputs</span> (<span class="shortcut">Ctrl</span>+<span class="shortcut">X</span>): Resets all text fields and selections in the currently active module.</li>
+                <li><span class="ui-element">Copy Results</span> (<span class="shortcut">Ctrl</span>+<span class="shortcut">C</span>): Copies raw calculation results (e.g., tables) to your clipboard for use in Excel or other software.</li>
+                <li><span class="ui-element">Copy Report</span> (<span class="shortcut">Ctrl</span>+<span class="shortcut">Shift</span>+<span class="shortcut">C</span>): Copies the formatted text report from the active module to your clipboard.</li>
+                <li><span class="ui-element">Export Plot...</span> (<span class="shortcut">Ctrl</span>+<span class="shortcut">E</span>): Saves the current graphical plot (if available) as an image file.</li>
+            </ul>
+        </div>
+
+        <div class="widget-card">
+            <div class="widget-title">Help Menu</div>
+            <ul>
+                <li><span class="ui-element">Instructions</span> (<span class="shortcut">F1</span>): Opens this help window or the specific help file for the active module.</li>
+                <li><span class="ui-element">Check for updates</span>: Connects to the server to verify if a newer version of Chemistry Suite is available.</li>
+                <li><span class="ui-element">About Chemistry Suite</span>: Displays version and developer information.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

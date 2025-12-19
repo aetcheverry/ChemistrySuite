@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMR Impurities - Instructions</title>
+    <style>
+        /* Styling adapted from home_page.html for consistency */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Headers - Using Blue Theme for Reference Data */
+        .cat-header {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-left: 10px;
+            border-left: 5px solid #3498db; /* Blue for Reference theme */
+            color: #2980b9;
+        }
+
+        /* Instruction Cards */
+        .widget-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-top: 4px solid #3498db; /* Blue border */
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .widget-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        /* Typography improvements */
+        p { margin-bottom: 10px; }
+        ul, ol { margin-top: 5px; padding-left: 25px; }
+        li { margin-bottom: 8px; color: #555; }
+        strong { color: #333; }
+        
+        .note {
+            background-color: #f9f9f9;
+            border-left: 3px solid #95a5a6;
+            padding: 10px 15px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #666;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Mathematical/Unit formatting */
+        .unit {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #c0392b;
+        }
+        .formula {
+            font-style: italic;
+            font-family: serif;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <h1>NMR Impurities Reference</h1>
+            <div class="subtitle">Trace Impurities in Deuterated Solvents</div>
+        </div>
+
+        <p>
+            This module provides a comprehensive database of chemical shifts for common laboratory impurities (solvents, grease, water) in various deuterated solvents. 
+            It is based on the standard data published by Fulmer <em>et al.</em>
+        </p>
+
+        <!-- Section 1: Browsing Data -->
+        <div class="cat-header">1. Browsing the Data</div>
+        <div class="widget-card">
+            <div class="widget-title">Navigation & Filters</div>
+            <p>
+                The interface allows you to toggle between Proton (<span class="unit"><sup>1</sup>H</span>) and Carbon (<span class="unit"><sup>13</sup>C</span>) data and filter the large table to find exactly what you need.
+            </p>
+            
+            <strong>Controls:</strong>
+            <ul>
+                <li><strong>Nucleus Toggle:</strong> Switch between <strong>Proton (<sup>1</sup>H)</strong> and <strong>Carbon (<sup>13</sup>C)</strong> modes using the radio buttons at the top.</li>
+                <li><strong>Search Impurity:</strong> Type in the search box to filter rows by the impurity name (e.g., "Ethyl acetate", "Water", "Grease").</li>
+                <li><strong>Filter by Solvent:</strong> Use the dropdown to isolate a specific deuterated solvent (e.g., <span class="unit">CDCl<sub>3</sub></span>). This hides all other solvent columns for easier reading.</li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Reading the Table -->
+        <div class="cat-header">2. Reading the Table</div>
+        <div class="widget-card">
+            <div class="widget-title">Column Definitions</div>
+            <p>
+                The main data table displays chemical shifts in ppm (&delta;).
+            </p>
+
+            <ul>
+                <li><strong>Impurity:</strong> The name of the trace compound.</li>
+                <li><strong>Mult (<sup>1</sup>H mode only):</strong> The multiplicity of the signal (e.g., <span class="unit">s</span> = singlet, <span class="unit">t</span> = triplet, <span class="unit">q</span> = quartet, <span class="unit">m</span> = multiplet).</li>
+                <li><strong>Solvent Columns (e.g., CDCl<sub>3</sub>, DMSO-d<sub>6</sub>):</strong> The chemical shift value of the impurity in that specific solvent.</li>
+            </ul>
+
+            <div class="note">
+                <strong>Empty Cells:</strong> A blank cell indicates that data is not available for that specific impurity/solvent combination, or the shift is obscured.
+            </div>
+        </div>
+
+        <!-- Section 3: Notes & Citations -->
+        <div class="cat-header">3. Notes & Citations</div>
+        <div class="widget-card">
+            <div class="widget-title">Footnotes & References</div>
+            <p>
+                The panel at the bottom of the window displays essential context for the data.
+            </p>
+            <ul>
+                <li><strong>Letter Codes:</strong> The letter codes are footnotes related to some impurities, such as the presence of isotopomers or the presence of additional resonances.</li>
+            </ul>
+
+            <strong>References:</strong>
+            <ul>
+                <li>
+                    <em>J. Org. Chem.</em> 1997, <strong>62</strong>, 21, 7512–7515. DOI: <a href="https://doi.org/10.1021/jo971176v" target="_blank">10.1021/jo971176v</a>
+                </li>
+                <li>
+                    <em>Organometallics</em> 2010, <strong>29</strong>, 9, 2176–2179. DOI: <a href="https://doi.org/10.1021/om100106e" target="_blank">10.1021/om100106e</a>
+                </li>
+                <li>
+                    <em>Org. Process Res. Dev.</em> 2016, <strong>20</strong>, 3, 661–667. DOI: <a href="https://doi.org/10.1021/acs.oprd.5b00417" target="_blank">10.1021/acs.oprd.5b00417</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

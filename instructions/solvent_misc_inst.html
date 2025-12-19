@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solvent Miscibility Chart - Instructions</title>
+    <style>
+        /* Styling adapted from home_page.html for consistency */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Headers */
+        .cat-header {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2980b9; /* Blue for Reference Data tools */
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        /* Widget Cards */
+        .widget-card {
+            background: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .widget-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Specific highlights */
+        .symbol-green {
+            color: #007800;
+            font-weight: bold;
+        }
+        .symbol-red {
+            color: #c80000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <h1>Solvent Miscibility Chart</h1>
+            <div class="subtitle">Quick reference guide for solvent compatibility in extractions and chromatography</div>
+        </div>
+
+        <!-- Section 1: Overview -->
+        <div class="cat-header">1. Overview</div>
+        <div class="widget-card">
+            <div class="widget-title">What is this tool?</div>
+            <p>
+                The Solvent Miscibility Chart provides an interactive grid displaying the mixing behavior of common laboratory solvents. 
+                This data is essential for designing liquid-liquid extractions (workups) and selecting mobile phases for chromatography.
+            </p>
+        </div>
+
+        <!-- Section 2: Reading the Chart -->
+        <div class="cat-header">2. Reading the Chart</div>
+        <div class="widget-card">
+            <div class="widget-title">Symbols & Color Codes</div>
+            <ul>
+                <li>
+                    <span class="symbol-green">● Green Circle (Miscible):</span> 
+                    Indicates that the two solvents mix in all proportions to form a single homogeneous phase.
+                </li>
+                <li>
+                    <span class="symbol-red">X Red Cross (Immiscible):</span> 
+                    Indicates that the solvents do not mix and will separate into two distinct phases (ideal for partitioning).
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 3: Interactive Features -->
+        <div class="cat-header">3. Interactive Features</div>
+        <div class="widget-card">
+            <div class="widget-title">Navigation Tools</div>
+            <ul>
+                <li><strong>Crosshair Highlighting:</strong> As you move your mouse over the grid, the tool automatically highlights the entire row and column for the solvent pair under your cursor. This makes it easy to trace connections across the large grid without losing your place.</li>
+                <li><strong>Detailed Tooltips:</strong> Hover your mouse over any specific cell to see a popup message explicitly stating the pair and their status (e.g., <em>"Water + Dichloromethane: Immiscible"</em>).</li>                
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
