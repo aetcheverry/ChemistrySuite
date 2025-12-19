@@ -6,16 +6,16 @@ A modular suite of chemical tools built with **PyQt6**, designed for chemists an
 ---
 
 ## 1) Features
-  Calculators:
-	- **Dilution Calculator**: 	Compute volumes for solution preparation.
-	- **DOSY NMR Calculator**: 	Estimate diffusion coefficients and viscosity corrections.
-	- **Elemental Analysis**: 	Compare calculated vs experimental elemental composition.
-	- **Isotopic Distribution**: 	Generate isotopic patterns for molecules.
+Calculators:
+- **Dilution Calculator**: 	Compute volumes for solution preparation.
+- **DOSY NMR Calculator**: 	Estimate diffusion coefficients and viscosity corrections.
+- **Elemental Analysis**: 	Compare calculated vs experimental elemental composition.
+- **Isotopic Distribution**: 	Generate isotopic patterns for molecules.
 
-  Reference Data:
-	- **Solvent Properties**: 	Search and view physical properties of solvents.
-	- **Solvent Miscibility**: 	Interactive miscibility matrix with hover tooltips.
-	- **NMR Impurities**: 		Reference common solvent impurities in NMR spectra.
+Reference Data:
+- **Solvent Properties**: 	Search and view physical properties of solvents.
+- **Solvent Miscibility**: 	Interactive miscibility matrix with hover tooltips.
+- **NMR Impurities**: 		Reference common solvent impurities in NMR spectra.
 
 ---
 
