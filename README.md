@@ -20,7 +20,7 @@ Reference Data:
 ---
 
 ## 2) Folder Structure
-
+```
 ChemistrySuite/
 ├─ main.py
 ├─ widgets/           # UI components
@@ -28,6 +28,7 @@ ChemistrySuite/
 ├─ lib/               # static datasets
 ├─ resources/         # icons, home_page.html
 └─ instructions/      # help pages (HTML)
+```
 
 ---
 
