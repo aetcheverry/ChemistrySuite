@@ -40,6 +40,8 @@ git clone https://github.com/aetcheverry/ChemistrySuite.git
 cd ChemistrySuite
 ```
 
+Alternatively, download the installer from the latest release.
+
 ---
 
 ## 4) Usage
@@ -48,6 +50,7 @@ Run the application:
 python main.py
 ```
 
+If using the installer, just execute the binary.
 ---
 
 ## 5) Requirements
