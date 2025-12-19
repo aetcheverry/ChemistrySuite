@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSY Calculator - Instructions</title>
+    <style>
+        /* Styling adapted from home_page.html for consistency */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Headers */
+        .cat-header {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-left: 10px;
+            border-left: 5px solid #27ae60; /* Green for calculator theme */
+            color: #27ae60;
+        }
+
+        /* Instruction Cards */
+        .widget-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-top: 4px solid #27ae60; /* Green border */
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .widget-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        /* Typography improvements for instructions */
+        p { margin-bottom: 10px; }
+        ul, ol { margin-top: 5px; padding-left: 25px; }
+        li { margin-bottom: 8px; color: #555; }
+        strong { color: #333; }
+        
+        .note {
+            background-color: #f9f9f9;
+            border-left: 3px solid #95a5a6;
+            padding: 10px 15px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #666;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Mathematical/Unit formatting */
+        .unit {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #c0392b;
+        }
+        .formula {
+            font-style: italic;
+            font-family: serif;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <h1>DOSY NMR Calculator</h1>
+            <div class="subtitle">Diffusion Coefficient & Molecular Weight Estimation</div>
+        </div>
+
+        <p>
+            This module assists in interpreting Diffusion Ordered Spectroscopy (DOSY) data. It allows you to interconvert between Diffusion Coefficients (<span class="formula">D</span>), Hydrodynamic Radii (<span class="formula">r<sub>H</sub></span>), and estimated Molecular Weights (<span class="formula">MW</span>) using two different models.
+        </p>
+
+        <!-- Section 1: Stokes-Einstein -->
+        <div class="cat-header">1. Stokes-Einstein Equation</div>
+        <div class="widget-card">
+            <div class="widget-title">Formula: <span class="formula">D = k<sub>B</sub>T / (c &pi; &eta; r<sub>H</sub>)</span></div>
+            <p>
+                The classical model for a spherical particle moving through a continuum fluid. Use this to determine the physical size (<span class="formula">r<sub>H</sub></span>) of your molecule.
+            </p>
+            
+            <strong>Steps:</strong>
+            <ol>
+                <li>Select your <strong>Solvent</strong>. The Viscosity (<span class="formula">&eta;</span>) is automatically set for 298.15 K.</li>
+                <li>Adjust the <strong>Temperature</strong> if your experiment was not at 25°C.</li>
+                <li>
+                    <strong>Shape Factor Slider:</strong> Adjust the friction coefficient (<span class="formula">c</span>):
+                    <ul>
+                        <li><strong>6.00 &pi; (Stick):</strong> Standard for larger molecules; assumes solvent sticks to the surface.</li>
+                        <li><strong>4.00 &pi; (Slip):</strong> Often better for small molecules where solvent flows past the surface.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Calculation:</strong>
+                    <ul>
+                        <li><strong>Input <em>r<sub>H</sub></em>:</strong> Enter your experimental <em>D</em> or log<em>D</em> to estimate the hydrodynamic radius.</li>
+                        <li><strong>Input <em>D</em>:</strong> Enter a hypothetical hydrodynamic radius <em>r<sub>H</sub></em> to estimate <em>D</em>.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Section 2: SEGWE -->
+        <div class="cat-header">2. SEGWE Method</div>
+        <div class="widget-card">
+            <div class="widget-title">SEGWE Method</div>
+            <p>
+                SEGWE stands for Stokes-Einstein Gierer-Wirtz Estimation. This uses empirical correlations tailored for small molecules in specific NMR solvents.
+            </p>
+
+            <strong>Steps:</strong>
+            <ol>
+                <li>Select the <strong>Solvent</strong> (Method relies on specific solvent parameters).</li>
+                <li>Ensure the <strong>Temperature</strong> matches your experiment.</li>
+                <li>
+                    <strong>Calculation:</strong>
+                    <ul>
+                        <li><strong>Input <em>D</em>:</strong> Enter your diffusion coefficient (<em>D</em> or log<em>D</em>) to estimate MW and <em>r<sub>H</sub></em>.</li>
+                        <li><strong>Input MW:</strong> Enter a target MW to predict the expected <em>D</em> and <em>r<sub>H</sub></em>.</li>
+                        <li><strong>Input <em>r<sub>H</sub></em>:</strong> Enter a hypothetical hydrodynamic radius <em>r<sub>H</sub></em> to estimate <em>D</em> and MW.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="note">
+                This method is often more accurate for small organic molecules/pharmaceuticals than the pure Stokes-Einstein spherical approximation.
+            </div>
+        </div>
+
+        <!-- Utility Features -->
+        <div class="cat-header">Utility Features</div>
+        <div class="widget-card">
+            <div class="widget-title">Reporting</div>
+            <ul>
+                <li><strong>Copy Report (Ctrl+Shift+C):</strong> Copies a formatted summary of the calculation (Solvent, <em>T</em>, <em>D</em>, <em>r<sub>H</sub></em>, MW) to the clipboard. Useful for pasting directly into lab notebooks or supporting information.</li>
+            </ul>
+        </div>
+
+        <!-- References -->
+        <div class="cat-header">References</div>
+        <div class="widget-card">
+            <div class="widget-title">Literature</div>
+            <ul>
+                <li>
+                    <em>Angew. Chem. Int. Ed.</em> 2013, <strong>52</strong>, 3199–3202. DOI: <a href="https://doi.org/10.1002/anie.201207403" target="_blank">10.1002/anie.201207403</a>
+                </li>
+                <li>
+                    <em>Anal. Chem.</em> 2018, <strong>90</strong>, 6, 3987–3994. DOI: <a href="https://doi.org/10.1021/acs.analchem.7b05032" target="_blank">10.1021/acs.analchem.7b05032</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

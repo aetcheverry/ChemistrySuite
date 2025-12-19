@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solvent Properties - Instructions</title>
+    <style>
+        /* Styling adapted from home_page.html and nmr_impurities_inst.html */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Headers - Blue Theme for Reference Data */
+        .cat-header {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-left: 10px;
+            border-left: 5px solid #3498db; /* Blue for Reference theme */
+            color: #2980b9;
+        }
+
+        /* Instruction Cards */
+        .widget-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-top: 4px solid #3498db; /* Blue border */
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .widget-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        /* Typography improvements */
+        p { margin-bottom: 10px; }
+        ul, ol { margin-top: 5px; padding-left: 25px; }
+        li { margin-bottom: 8px; color: #555; }
+        strong { color: #333; }
+        
+        .note {
+            background-color: #f9f9f9;
+            border-left: 3px solid #95a5a6;
+            padding: 10px 15px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #666;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Mathematical/Unit formatting */
+        .unit {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #c0392b;
+        }
+        .formula {
+            font-style: italic;
+            font-family: serif;
+        }
+        
+        /* Citation specific styling */
+        .citation {
+            font-size: 0.95em;
+            color: #444;
+            background: #fdfdfd;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            margin-bottom: 15px; /* Added spacing between citations */
+        }
+        .citation:last-child {
+            margin-bottom: 0;
+        }
+        .citation-title {
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .citation-details {
+            display: block;
+            margin-bottom: 3px;
+        }
+        .citation-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .citation-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <h1>Solvent Properties</h1>
+            <div class="subtitle">Physical Constants & Safety Data</div>
+        </div>
+
+        <p>
+            The Solvent Properties module is a quick-reference database containing physical, chemical, and safety data for common laboratory solvents. 
+            It is designed to assist in reaction planning, workups, and solvent selection.
+        </p>
+
+        <!-- Section 1: Browsing Data -->
+        <div class="cat-header">1. Search & Sort</div>
+        <div class="widget-card">
+            <div class="widget-title">Finding Solvents</div>
+            <p>
+                The database contains a wide range of solvents. You can filter and organize this list to find the specific properties you need.
+            </p>
+            
+            <strong>Controls:</strong>
+            <ul>
+                <li><strong>Search Bar:</strong> Filter the list instantly by typing the solvent name or chemical formula (e.g., "DCM", "Acetone", "C6H6").</li>
+                <li>
+                    <strong>Sorting:</strong> Use the dropdown menus to reorder the list:
+                    <ul>
+                        <li><strong>Sort By:</strong> Choose a property (e.g., Boiling Point, Density, Dielectric Constant).</li>
+                        <li><strong>Order:</strong> Toggle between Ascending (Low &rarr; High) and Descending (High &rarr; Low).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Customizing View -->
+        <div class="cat-header">2. Customizing the View</div>
+        <div class="widget-card">
+            <div class="widget-title">Column Visibility</div>
+            <p>
+                To keep the interface clean, not all data is shown by default. You can toggle specific columns on or off using the checkboxes in the settings area.
+            </p>
+
+            <strong>Available Properties:</strong>
+            <ul>
+                <li><strong>Density:</strong> Mass per unit volume (in g/mL).</li>
+                <li><strong>Viscosity:</strong> Resistance to flow (in mPa&middot;s at 20 &deg;C).</li>
+                <li><strong>Vapour pressure:</strong> Pressure exerted by the solvent vapor in equilibrium with its liquid phase (in kPa).</li>
+                <li><strong>Melting point:</strong> Solid-liquid phase transition (in &deg;C).</li>
+                <li><strong>Boiling point:</strong> Liquid-gas phase transition (in &deg;C).</li>
+                <li><strong>Flash point:</strong> Lowest temperature at which vapors ignite (in &deg;C).</li>
+                <li><strong>UV cutoff:</strong> Cutoff wavelength, below which the solvent absorption becomes excessive (in nm).</li>
+                <li><strong>Refractive Index:</strong> Measure of light propagation speed (at 20 &deg;C, stated otherwise).</li>
+                <li><strong>Dielectric constant:</strong> Measure of solvent polarity (at 20 &deg;C, stated otherwise).</li>
+                <li><strong>Drying Agents:</strong> Recommended chemicals for drying the solvent.</li>
+            </ul>
+            
+            <div class="note">
+                <strong>Note:</strong> Empty cells mean no data available.
+            </div>
+        </div>
+
+        <!-- Section 3: Utility -->
+        <div class="cat-header">3. Utility Features</div>
+        <div class="widget-card">
+            <div class="widget-title">Export & Reset</div>
+            <ul>
+                <li><strong>Copy Table (Ctrl+C):</strong> Copies the currently visible rows and columns to the clipboard as tab-separated values (TSV), ready to paste into Excel or a lab notebook.</li>
+                <li><strong>Clear Inputs (Ctrl+X):</strong> Resets the search filter, restores default sorting, and resets column visibility to the default preset.</li>
+            </ul>
+        </div>
+
+        <!-- Section 4: References -->
+        <div class="cat-header">4. Reference</div>
+        <div class="widget-card">
+            <div class="widget-title">Source Data</div>
+            <p>Data sourced from:</p>
+            
+            <div class="citation">
+                <span class="citation-title">CRC Handbook of Basic Tables for Chemical Analysis: Data-Driven Methods and Interpretation</span>
+                <span class="citation-details"><strong>By:</strong> Thomas J. Bruno, Paris D.N. Svoronos</span>
+                <span class="citation-details"><strong>Edition:</strong> 4th Edition</span>
+                <span class="citation-details"><strong>First Published:</strong> 2020 | <strong>eBook Published:</strong> 30 July 2020</span>
+                <span class="citation-details"><strong>Pub. Location:</strong> Boca Raton | <strong>Imprint:</strong> CRC Press</span>
+                <span class="citation-details"><strong>Pages:</strong> 932 | <strong>eBook ISBN:</strong> 9781315109466</span>
+                <span class="citation-details"><strong>DOI:</strong> <a href="https://doi.org/10.1201/b22281" class="citation-link" target="_blank">10.1201/b22281</a></span>
+            </div>
+
+            <div class="citation">
+                <span class="citation-title">CRC Handbook of Chemistry and Physics</span>
+                <span class="citation-details"><strong>Edited By:</strong> William M. Haynes</span>
+                <span class="citation-details"><strong>Edition:</strong> 97th Edition</span>
+                <span class="citation-details"><strong>First Published:</strong> 2016 | <strong>eBook Published:</strong> 24 June 2016</span>
+                <span class="citation-details"><strong>Pub. Location:</strong> Boca Raton | <strong>Imprint:</strong> CRC Press</span>
+                <span class="citation-details"><strong>Pages:</strong> 2670 | <strong>eBook ISBN:</strong> 9781498754293</span>
+                <span class="citation-details"><strong>DOI:</strong> <a href="https://doi.org/10.1201/9781315380476" class="citation-link" target="_blank">10.1201/9781315380476</a></span>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

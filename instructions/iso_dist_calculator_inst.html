@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isotopic Distribution Calculator - Instructions</title>
+    <style>
+        /* Styling adapted from home_page.html for consistency */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Headers */
+        .cat-header {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-left: 10px;
+            border-left: 5px solid #27ae60; /* Green for calculator theme */
+            color: #27ae60;
+        }
+
+        /* Instruction Cards */
+        .widget-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-top: 4px solid #27ae60; /* Green border */
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .widget-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        /* Typography improvements for instructions */
+        p { margin-bottom: 10px; }
+        ul, ol { margin-top: 5px; padding-left: 25px; }
+        li { margin-bottom: 8px; color: #555; }
+        strong { color: #333; }
+        
+        .note {
+            background-color: #f9f9f9;
+            border-left: 3px solid #95a5a6;
+            padding: 10px 15px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #666;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Mathematical/Unit formatting */
+        .unit {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #c0392b;
+        }
+        .formula {
+            font-style: italic;
+            font-family: serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <h1>Isotopic Distribution</h1>
+            <div class="subtitle">Mass Spectrometry Simulation</div>
+        </div>
+
+        <p>
+            This module simulates the theoretical isotopic distribution pattern for a given molecular formula. 
+            It is designed to help verify High-Resolution Mass Spectrometry (HRMS) data by predicting the exact m/z values and relative abundances of isotopic peaks.
+        </p>
+
+        <!-- Section 1: Setup -->
+        <div class="cat-header">1. Simulation Setup</div>
+        <div class="widget-card">
+            <div class="widget-title">Defining the Species</div>
+            <p>
+                Configure the molecule and ionization parameters to match your experiment.
+            </p>
+            
+            <strong>Steps:</strong>
+            <ol>
+                <li>Enter the <strong>Chemical Formula</strong> (e.g., <span class="unit">C20H25N3O</span>).</li>
+                <li>
+                    <strong>Ionization Mode:</strong> Select <strong>Positive (+)</strong> or <strong>Negative (-)</strong>. 
+                    This updates the list of available adducts.
+                </li>
+                <li>
+                    <strong>Adduct:</strong> Choose the adduct formed during ionization (e.g., <span class="unit">[M+H]+</span>, <span class="unit">[M+Na]+</span>, <span class="unit">[M-H]-</span>).
+                    The calculator automatically adjusts the formula and charge.
+                </li>
+                <li>Click <strong>Calculate Distribution</strong>.</li>
+            </ol>
+        </div>
+
+        <!-- Section 2: Results -->
+        <div class="cat-header">2. Analysis Results</div>
+        <div class="widget-card">
+            <div class="widget-title">Table & Plot</div>
+            <p>
+                The module generates two views of the data:
+            </p>
+
+            <ul>
+                <li>
+                    <strong>Peak Table:</strong> Lists the calculated <strong>m/z</strong> and relative <strong>Abundance (%)</strong> for the most significant isotopes (up to 99.9% coverage).
+                </li>
+                <li>
+                    <strong>Spectral Plot:</strong> A visual representation of the mass spectrum (stick plot).
+                </li>
+            </ul>
+        </div>
+
+        <!-- Utility Features -->
+        <div class="cat-header">Utility Features</div>
+        <div class="widget-card">
+            <div class="widget-title">Export Options</div>
+            <ul>
+                <li><strong>Copy Results (Ctrl+C):</strong> Copies the Peak Table data (m/z and Abundance) to the clipboard as text.</li>
+                <li><strong>Export Plot (Ctrl+E):</strong> Opens a dialog to save the current spectral plot as an image file (PNG, PDF, SVG, etc.) for use in publications or presentations.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

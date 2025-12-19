@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilution Calculator - Instructions</title>
+    <style>
+        /* Styling adapted from home_page.html for consistency */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Headers */
+        .cat-header {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-left: 10px;
+            border-left: 5px solid #27ae60; /* Green for calculator theme */
+            color: #27ae60;
+        }
+
+        /* Instruction Cards */
+        .widget-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-top: 4px solid #27ae60; /* Green border */
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .widget-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        /* Typography improvements for instructions */
+        p { margin-bottom: 10px; }
+        ul, ol { margin-top: 5px; padding-left: 25px; }
+        li { margin-bottom: 8px; color: #555; }
+        strong { color: #333; }
+        
+        .note {
+            background-color: #f9f9f9;
+            border-left: 3px solid #95a5a6;
+            padding: 10px 15px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #666;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Mathematical/Unit formatting */
+        .unit {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #c0392b;
+        }
+        .formula {
+            font-style: italic;
+            font-family: serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <h1>Dilution Calculator</h1>
+            <div class="subtitle">Instructions & Usage Guide</div>
+        </div>
+
+        <p>
+            The Dilution Calculator module provides three distinct tools to assist with daily laboratory preparations. 
+            Select the appropriate section based on whether you are diluting a stock solution, preparing acid/base from a liquid reagent, or dissolving a solid.
+        </p>
+
+        <!-- Section 1: Simple Dilution -->
+        <div class="cat-header">1. General Solution Dilution</div>
+        <div class="widget-card">
+            <div class="widget-title">Formula: <span class="formula">C<sub>1</sub>V<sub>1</sub> = C<sub>2</sub>V<sub>2</sub></span></div>
+            <p>Use this tool when you have a stock solution of known concentration and wish to prepare a specific volume of a more dilute solution.</p>
+            
+            <strong>Steps:</strong>
+            <ol>
+                <li>Enter the <strong>Stock Concentration (<span class="formula">C<sub>1</sub></span>)</strong>.</li>
+                <li>Enter the desired <strong>Final Volume (<span class="formula">V<sub>2</sub></span>)</strong>.</li>
+                <li>Enter the desired <strong>Final Concentration (<span class="formula">C<sub>2</sub></span>)</strong>.</li>
+                <li>Click <strong>Calculate</strong>.</li>
+            </ol>
+            
+            <p>The result will display the volume of stock solution (<span class="formula">V<sub>1</sub></span>) required. The remaining volume should be made up with your solvent.</p>
+        </div>
+
+        <!-- Section 2: Acids & Bases -->
+        <div class="cat-header">2. Acids & Bases (Liquid Stocks)</div>
+        <div class="widget-card">
+            <div class="widget-title">Preparation from Commercial Reagents</div>
+            <p>
+                Commercial acids and bases are often sold as weight percentages (e.g., 37% HCl) with specific densities. 
+                This tool calculates the molarity of the commercial bottle and determines how much to add to reach your target concentration.
+            </p>
+
+            <strong>Steps:</strong>
+            <ol>
+                <li>Select a reagent from the <strong>Reagent</strong> dropdown (e.g., Hydrochloric Acid, Sulfuric Acid).</li>
+                <li>Set the <strong>Target Volume</strong> and <strong>Target Molarity</strong> you wish to prepare.</li>
+                <li>Click <strong>Calculate</strong>.</li>
+            </ol>
+
+            <div class="note">
+                <strong>Custom Reagents:</strong> If your reagent is not listed, select <em>"Other (Manual Input)"</em> from the dropdown. 
+                Additional fields will appear allowing you to manually enter the <strong>Density (g/mL)</strong>, <strong>Purity (%)</strong>, and <strong>Molecular Weight (MW)</strong> found on the bottle label.
+            </div>
+        </div>
+
+        <!-- Section 3: Mass Calculation -->
+        <div class="cat-header">3. Mass Calculation (Solid to Liquid)</div>
+        <div class="widget-card">
+            <div class="widget-title">Preparing Solutions from Solids</div>
+            <p>Calculate the mass of a solid compound required to achieve a specific molarity in a given volume.</p>
+
+            <strong>Steps:</strong>
+            <ol>
+                <li>
+                    <strong>Chemical Formula:</strong> Enter the formula (e.g., <span class="unit">NaCl</span>, <span class="unit">C6H12O6</span>). 
+                    The Molecular Weight (MW) will be calculated automatically.
+                </li>
+                <li>
+                    <strong>Manual MW:</strong> Alternatively, if the formula is complex or unknown, you can manually type the MW into the number box.
+                </li>
+                <li>Enter the <strong>Target Volume</strong> and <strong>Target Concentration</strong>.</li>
+                <li>Click <strong>Calculate</strong>.</li>
+            </ol>
+        </div>
+
+        <!-- Utility Features -->
+        <div class="cat-header">Utility Features</div>
+        <div class="widget-card">
+            <div class="widget-title">Shortcuts & Export</div>
+            <ul>
+                <li><strong>Clear Inputs (Ctrl+X):</strong> Resets all fields in the currently active calculator to their default values.</li>
+                <li><strong>Copy Results (Ctrl+C):</strong> Copies the text from the result boxes to your clipboard for use in lab notebooks.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
